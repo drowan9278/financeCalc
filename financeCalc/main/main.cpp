@@ -2,14 +2,10 @@
 //
 
 #include "stdafx.h"
-/* here is where I figured we would start,for all work you do leave a comment with your with initials, -DR*/
+/*This will be the main file, please add initials after all code editing in a comment-DR*/
 
 int main()
 {
-    
-	return 0;
+    return 0;
 }
-int testGit()
-{
-	return 1;
-}
+
