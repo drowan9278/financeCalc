@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MENUS_H
+#define MENUS_H
 /*Here we will add our menus, shouldn't be much but should be able to access have  a menu for
 -main menu
  -account select
@@ -10,5 +11,6 @@ class menus
 public:
 	menus();
 	~menus();
+	void grabStructDataFirst(int x);
 };
-
+#endif
