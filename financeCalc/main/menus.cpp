@@ -37,3 +37,21 @@ void menus::grabStructDataFirst(int x, vector<structure1::customer>& data)/*We w
 													 will be added to the history vector*/
 	
 }
+
+void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this to modify an existing accout (just removed the type of account)*/
+{
+	cout << "Please enter the credit or debit you will be adding to "<< data[x].type <<" account"<< endl;
+	float holder;
+	cin >> holder;
+	data[x].detail.balance += holder;
+	cout << "Please enter a description for the balance" << endl;
+	string desc;
+	cin >> desc;
+	time_t current = time(0);
+	char* dt = ctime(&current);
+	cout << dt;
+	int count = 0;
+	string newDesc = desc + " **Cr/Db = " + to_string(holder) + " ** Time of transaction: " + dt;
+	data[x].detail.history.push_back(newDesc);/*This will add the description the amount and time current time and then
+											  will be added to the history vector*/
+}

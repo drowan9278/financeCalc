@@ -20,7 +20,7 @@ int main()
 	
 	
 	 menuObj.grabStructDataFirst(x, obj.accounts);
-	 cout << obj.accounts[x].type << "it workedddd" << endl;
+	 cout << obj.accounts[x].detail.history[0] << "it workedddd" << endl;
 	return 0;
 }
 
