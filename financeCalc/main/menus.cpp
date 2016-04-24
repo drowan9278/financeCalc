@@ -14,19 +14,17 @@ menus::menus()
 menus::~menus()
 {
 }
-void grabStructDataFirst(int x)/*We would use this to grab account information for either a new account or new customer*/
+
+void menus::grabStructDataFirst(int x, vector<structure1::customer>& data)/*We would use this to grab account information for either a new account or new customer*/
 {
-	structure1 data;
-	for (int y = 0; y < x;y++)/*to go the point in the memory where the specified structure is*/
-	{
-		data.accounts++;
-	}
+	
+	
 	cout << "Please enter the account type" << endl;
-	cin >> data.accounts->type;
+	cin >> data[x].type;
 	cout << "Please enter the credit or debit you will be adding" << endl;
 	float holder;
 	cin >> holder;
-	data.accounts->detail.balance += holder;
+	data[x].detail.balance += holder;
 	cout << "Please enter a description for the balance" << endl;
 	string desc;
 	cin >> desc;
@@ -35,7 +33,7 @@ void grabStructDataFirst(int x)/*We would use this to grab account information f
 	cout << dt;
 	int count = 0;
 	string newDesc = desc + " **Cr/Db = " + to_string(holder) + " ** Time of transaction: " + dt;
-	data.accounts->detail.history.push_back(newDesc);/*This will add the description the amount and time current time and then 
+	data[x].detail.history.push_back(newDesc);/*This will add the description the amount and time current time and then 
 													 will be added to the history vector*/
 	
 }

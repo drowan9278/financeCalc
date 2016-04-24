@@ -17,7 +17,7 @@ public:
 		
 		string type; /*This is where we could specify the type of account it is-DR*/
 		details detail;
-	}*accounts;/*Have to create a pointer so we could create an array later on after specifing amount of account, or mabye we could do a linked list of accounts? unsure-DR*/
-	
+	};/*Have to create a pointer so we could create an array later on after specifing amount of account, or mabye we could do a linked list of accounts? unsure-DR*/
+	vector<customer> accounts;
 };
 
