@@ -17,8 +17,6 @@ menus::~menus()
 
 void menus::grabStructDataFirst(int x, vector<structure1::customer>& data)/*We would use this to grab account information for either a new account or new customer*/
 {
-	
-	
 	cout << "Please enter the account type" << endl;
 	cin >> data[x].type;
 	cout << "Please enter the credit or debit you will be adding" << endl;
@@ -35,7 +33,6 @@ void menus::grabStructDataFirst(int x, vector<structure1::customer>& data)/*We w
 	string newDesc = desc + " **Cr/Db = " + to_string(holder) + " ** Time of transaction: " + dt;
 	data[x].detail.history.push_back(newDesc);/*This will add the description the amount and time current time and then 
 													 will be added to the history vector*/
-	
 }
 
 void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this to modify an existing accout (just removed the type of account)*/
@@ -55,3 +52,24 @@ void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this
 	data[x].detail.history.push_back(newDesc);/*This will add the description the amount and time current time and then
 											  will be added to the history vector*/
 }
+void menus::addAccount()
+{
+	cout << "Would you like to add an account? (Y or N" << endl;
+	char answer;
+	cin >> answer;
+	switch (answer) {
+	case 'Y':
+	case 'y':
+		break;
+	case 'N':
+	case 'n':
+
+		break;
+	}
+}
+void menus::getInfoAccount()
+{
+	
+}
+
+

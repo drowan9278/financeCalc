@@ -15,5 +15,8 @@ public:
 	~menus();
 	void grabStructDataFirst(int x, vector<structure1::customer> &data);
 	void modifyExistData(int x, vector<structure1::customer> &data);
+	void addAccount();
+	void getInfoAccount();
+
 };
 #endif
