@@ -52,20 +52,17 @@ void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this
 	data[x].detail.history.push_back(newDesc);/*This will add the description the amount and time current time and then
 											  will be added to the history vector*/
 }
-void menus::addAccount()
+int menus::addAccount(vector<structure1::customer>& data)
 {
+	
 	cout << "Would you like to add an account? (Y or N" << endl;
 	char answer;
 	cin >> answer;
-	switch (answer) {
-	case 'Y':
-	case 'y':
-		break;
-	case 'N':
-	case 'n':
-
-		break;
-	}
+	data.resize((sizeof(data)+1));
+	int x = sizeof(data);
+	return x;
+	
+	
 }
 void menus::getInfoAccount()
 {

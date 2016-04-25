@@ -14,8 +14,12 @@ int main()
 {
 	structure1 obj;
 	vector<structure1::customer> accounts =  vector<structure1::customer>();
-	menus menuObj;
+	menus accountMenus;
+	int x = accountMenus.addAccount(accounts);
+	vector<structure1::customer>* accountPtr = &accounts;
+	accountMenus.grabStructDataFirst(x,accounts);
 	
+	cout << accounts[x].detail.history[x];
 	return 0;
 }
 
