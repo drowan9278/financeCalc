@@ -13,10 +13,10 @@ class menus
 public:
 	menus();
 	~menus();
-	void grabStructDataFirst(int x, vector<structure1::customer> &data);
+	void mainMenu (vector<structure1::customer>& data);
 	void modifyExistData(int x, vector<structure1::customer> &data);
-	int addAccount(vector<structure1::customer>& data);
-	void getInfoAccount();
+	void addAccount(vector<structure1::customer>& data);
+	void getInfoAccount(int x, vector<structure1::customer>& data);
 
 };
 #endif

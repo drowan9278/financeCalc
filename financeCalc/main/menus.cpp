@@ -15,58 +15,147 @@ menus::~menus()
 {
 }
 
-void menus::grabStructDataFirst(int x, vector<structure1::customer>& data)/*We would use this to grab account information for either a new account or new customer*/
+void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access all other menus
 {
-	cout << "Please enter the account type" << endl;
-	cin >> data[x].type;
-	cout << "Please enter the credit or debit you will be adding" << endl;
-	float holder;
-	cin >> holder;
-	data[x].detail.balance += holder;
-	cout << "Please enter a description for the balance" << endl;
-	string desc;
-	cin >> desc;
-	time_t current = time(0);
-	char* dt = ctime(&current);
-	cout << dt;
-	int count = 0;
-	string newDesc = desc + " **Cr/Db = " + to_string(holder) + " ** Time of transaction: " + dt;
-	data[x].detail.history.push_back(newDesc);/*This will add the description the amount and time current time and then 
-													 will be added to the history vector*/
+	/*switch
+	0-add an account
+	1-modify account
+	2-view historical transactions
+	3-view account summary
+	4-search for transactions
+	5-save and exit
+	6-restore from backup
+	*//**/
+	cout << "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
+	cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View historical transactions\n3 - View account summary\n4 - Search for transactions\n5 - Backup & Restore Data\n6 - Save & Exit\n" << endl;
+	
+	while (true) //loop "infinitely" until break statement is reached
+	{
+		int answer;
+		cin >> answer;
+		
+		switch (answer)
+		{
+			case 0:
+				addAccount(data);
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			default:
+				cout << "\n\tINVALID RESPONSE RECIEVED\n\n";
+				cout << "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
+				cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View historical transactions\n3 - View account summary\n4 - Search for transactions\n5 - Backup & Restore Data\n6 - Save & Exit\n" << endl;
+				continue; //skips rest of loop and returns to beginning
+		}
+		break;//breaks out of loop once valid response recieved
+	}
+
 }
 
 void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this to modify an existing accout (just removed the type of account)*/
 {
-	cout << "Please enter the credit or debit you will be adding to "<< data[x].type <<" account"<< endl;
-	float holder;
-	cin >> holder;
-	data[x].detail.balance += holder;
-	cout << "Please enter a description for the balance" << endl;
-	string desc;
-	cin >> desc;
-	time_t current = time(0);
-	char* dt = ctime(&current);
-	cout << dt;
-	int count = 0;
-	string newDesc = desc + " **Cr/Db = " + to_string(holder) + " ** Time of transaction: " + dt;
-	data[x].detail.history.push_back(newDesc);/*This will add the description the amount and time current time and then
+	char yn;
+	while (true)
+	{
+		cout << "Please enter the credit or debit you will be adding to " << data[x].name << ":" << endl;
+		float holder;
+		cin >> holder;
+		data[x].detail.balance += holder;
+		cout << "Please add a description for this entry: " << endl;
+		string desc;
+		cin.ignore(1000, '\n');
+		getline(cin, desc);
+		time_t current = time(0);
+		char* dt = ctime(&current);
+		cout << dt;
+		int count = 0;
+		string newDesc = desc + " **Cr/Db = " + to_string(holder) + " ** Time of transaction: " + dt;
+		data[x].detail.history.push_back(newDesc);/*This will add the description the amount and time current time and then
 											  will be added to the history vector*/
+		cout << "Would you like to add another entry?" << endl;
+		cin >> yn;
+
+
+
+	}
 }
-int menus::addAccount(vector<structure1::customer>& data)
+void menus::addAccount(vector<structure1::customer>& data)
 {
-	
-	cout << "Would you like to add an account? (Y or N" << endl;
-	char answer;
-	cin >> answer;
-	data.resize((sizeof(data)+1));
+	string tempPIN;
+	bool matchedPIN = false;
 	int x = sizeof(data);
-	return x;
-	
+	cout << "\nWould you like to add an account? (Y or N)" << endl;
+	while (true) //loops until break statement reached
+	{
+		char answer;
+		cin.ignore(1000, '\n');
+		cin >> answer;
+		switch (answer)
+		{
+		case 'Y':
+		case 'y':
+			data.resize((sizeof(data) + 1));
+			x = sizeof(data);
+			cout << "Please enter the account name: " << endl;
+			cin.ignore(1000, '\n');
+			getline(cin, data[x].name);
+			char cs;
+			do {
+				cout << "Please enter the account type (C for checking, S for savings: )" << endl;
+				cin >> cs;
+			} while (!(cs == 'C' || cs == 'c') && !(cs == 'S' || cs == 's'));
+			data[x].type = cs;
+			do
+			{
+				cout << "Please enter a unique PIN for this account: " << endl;
+				cin >> tempPIN;
+				for (int i = 0; i < sizeof(data); i++)
+				{
+					if (data[i].detail.pin == tempPIN)
+						matchedPIN = true;
+				}
+				if (!matchedPIN)
+					data[x].detail.pin = tempPIN;
+			} while (matchedPIN);
+			cout << "\nYour PIN is : " << data[x].detail.pin << "\n\tDO NOT FORGET YOUR PIN!\n\t\tIT IS THE ONLY WAY TO ACCESS YOUR ACCOUNT!\n" << endl;
+			modifyExistData(x, data);
+			break;
+		case 'N':
+		case 'n':
+			mainMenu(data);
+			break;
+
+		default:
+			cout << "\nYou have entered an invalid response!:" << endl;;
+			cout << "\nWould you like to add an account? (Y or N)";
+			continue; //jumps to top of loop
+		}
+		break; //breaks out of loop only when valid response is recieved
+	}
+
+
 	
 }
-void menus::getInfoAccount()
+void menus::getInfoAccount(int x, vector<structure1::customer>& data)
 {
-	
+	cout << "\n\n\t\t" << data[x].name << endl;
+	cout << "Type: ";
+	if (data[x].type == 'c' || data[x].type == 'C')
+		cout << "Checking" << endl;
+	else
+		cout << "Savings" << endl;
+	cout << "Current balance: " << data[x].detail.balance << endl;
+
 }
 
 
