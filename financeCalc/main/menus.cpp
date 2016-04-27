@@ -64,8 +64,9 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 
 void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this to modify an existing accout (just removed the type of account)*/
 {
+	bool whilBrk = true;
 	char yn;
-	while (true)
+	while (whilBrk)
 	{
 		cout << "Please enter the credit or debit you will be adding to " << data[x].name << ":" << endl;
 		float holder;
@@ -82,15 +83,25 @@ void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this
 		string newDesc = desc + " **Cr/Db = " + to_string(holder) + " ** Time of transaction: " + dt;
 		data[x].detail.history.push_back(newDesc);/*This will add the description the amount and time current time and then
 											  will be added to the history vector*/
-		cout << "Would you like to add another entry?" << endl;
+		cout << "Would you like to add another entry?(Y or N) " << endl;
 		cin >> yn;
-
+		if(yn=='Y'||yn=='y')
+		{
+			modifyExistData(x, data);
+		}
+		else
+		{
+			cout << "Now exiting to Main Menu" << endl;
+			whilBrk = false;
+		}
 
 
 	}
 }
-void menus::addAccount(vector<structure1::customer>& data)
+void menus::addAccount(vector<structure1::customer>& data1)
 {
+	structure1::customer data;
+	
 	string tempPIN;
 	bool matchedPIN = false;
 	int x = sizeof(data);
@@ -104,35 +115,39 @@ void menus::addAccount(vector<structure1::customer>& data)
 		{
 		case 'Y':
 		case 'y':
-			data.resize((sizeof(data) + 1));
+			
 			x = sizeof(data);
 			cout << "Please enter the account name: " << endl;
 			cin.ignore(1000, '\n');
-			getline(cin, data[x].name);
+			getline(cin, data.name);
 			char cs;
 			do {
 				cout << "Please enter the account type (C for checking, S for savings: )" << endl;
 				cin >> cs;
 			} while (!(cs == 'C' || cs == 'c') && !(cs == 'S' || cs == 's'));
-			data[x].type = cs;
+			data.type = cs;
 			do
 			{
 				cout << "Please enter a unique PIN for this account: " << endl;
 				cin >> tempPIN;
 				for (int i = 0; i < sizeof(data); i++)
 				{
-					if (data[i].detail.pin == tempPIN)
+					if (data.detail.pin == tempPIN)
 						matchedPIN = true;
 				}
 				if (!matchedPIN)
-					data[x].detail.pin = tempPIN;
+					data.detail.pin = tempPIN;
 			} while (matchedPIN);
-			cout << "\nYour PIN is : " << data[x].detail.pin << "\n\tDO NOT FORGET YOUR PIN!\n\t\tIT IS THE ONLY WAY TO ACCESS YOUR ACCOUNT!\n" << endl;
-			modifyExistData(x, data);
+			cout << "\nYour PIN is : " << data.detail.pin << "\n\tDO NOT FORGET YOUR PIN!\n\t\tIT IS THE ONLY WAY TO ACCESS YOUR ACCOUNT!\n" << endl;
+			
+			data.vectorID=size(data1);
+			data1.push_back(data);
+			modifyExistData(data.vectorID, data1);
 			break;
 		case 'N':
 		case 'n':
-			mainMenu(data);
+			/*mainMenu(data1);*/
+			return;
 			break;
 
 		default:

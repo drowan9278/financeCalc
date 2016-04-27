@@ -1,0 +1,74 @@
+During the final project, each team member is expected to contribute equally. 
+To help ensure fair grading in this area, each team member will perform a peer review of all team members (including themselves)
+ the night of the presentations. A form will be provided via Blackboard for you to fill out.
+Personal Finance Calculator
+Create a program that helps people keep track of their personal finances. 
+Think of this application as an electronic ledger which can be console based or Windows Form based for the user interface. 
+The application should know who is using it as well as prevent unauthorized uses from seeing their data. 
+It must implement the following features:
+•	Ability to have multiple accounts (i.e. checking, savings, money market, etc.)
+•	Ability to add debits and credits to each account
+o	Each debit and credit should have the ability to store the date, name, description and dollar amount 
+•	Ability to view historical transactions
+•	Ability to view summary of all accounts
+•	Ability to search for transactions
+•	Ability to persist the data entered after the application shuts down
+•	Bonus Points: Provide a way to backup and restore the data
+Personal Address Book
+Create an application that allows people to store their contact details. 
+This application should have the ability to import and export all or selected contacts. 
+In addition, the following features must be implemented
+•	Ability to store Name, address, multiple phone number, description, web site, and company name
+•	Ability to search for contacts by first name, last name or both
+•	Ability to merge duplicate contacts
+•	Bonus Points: 
+Create an application that allows people to store their contact details. This application should have the ability to import and export all or selected contacts. In addition, the following features must be implemented
+•	Ability to store Name, address, multiple phone number, description, web site, and company name
+•	Ability to search for contacts by first name, last name or both
+•	Ability to merge duplicate contacts
+•	Bonus Points: 
+Create an application that allows people to store their contact details. This application should have the ability to import and export all or selected contacts. In addition, the following features must be implemented
+•	Ability to store Name, address, multiple phone number, description, web site, and company name
+•	Ability to search for contacts by first name, last name or both
+•	Ability to merge duplicate contacts
+•	Bonus Points: 
+Create an application that allows people to store their contact details. This application should have the ability to import and export all or selected contacts. In addition, the following features must be implemented
+•	Ability to store Name, address, multiple phone number, description, web site, and company name
+•	Ability to search for contacts by first name, last name or both
+•	Ability to merge duplicate contacts
+•	Bonus Points: 
+Create an application that allows people to store their contact details. This application should have the ability to import and export all or selected contacts. In addition, the following features must be implemented
+•	Ability to store Name, address, multiple phone number, description, web site, and company name
+•	Ability to search for contacts by first name, last name or both
+•	Ability to merge duplicate contacts
+•	Bonus Points: 
+Create an application that allows people to store their contact details. This application should have the ability to import and export all or selected contacts. In addition, the following features must be implemented
+•	Ability to store Name, address, multiple phone number, description, web site, and company name
+•	Ability to search for contacts by first name, last name or both
+•	Ability to merge duplicate contacts
+•	Bonus Points: 
+Create an application that allows people to store their contact details. This application should have the ability to import and export all or selected contacts. In addition, the following features must be implemented
+•	Ability to store Name, address, multiple phone number, description, web site, and company name
+•	Ability to search for contacts by first name, last name or both
+•	Ability to merge duplicate contacts
+•	Bonus Points: 
+Create an application that allows people to store their contact details. This application should have the ability to import and export all or selected contacts. In addition, the following features must be implemented
+•	Ability to store Name, address, multiple phone number, description, web site, and company name
+•	Ability to search for contacts by first name, last name or both
+•	Ability to merge duplicate contacts
+•	Bonus Points: 
+Create an application that allows people to store their contact details. This application should have the ability to import and export all or selected contacts. In addition, the following features must be implemented
+•	Ability to store Name, address, multiple phone number, description, web site, and company name
+•	Ability to search for contacts by first name, last name or both
+•	Ability to merge duplicate contacts
+•	Bonus Points: 
+Create an application that allows people to store their contact details. This application should have the ability to import and export all or selected contacts. In addition, the following features must be implemented
+•	Ability to store Name, address, multiple phone number, description, web site, and company name
+•	Ability to search for contacts by first name, last name or both
+•	Ability to merge duplicate contacts
+•	Bonus Points: 
+Create an application that allows people to store their contact details. This application should have the ability to import and export all or selected contacts. In addition, the following features must be implemented
+•	Ability to store Name, address, multiple phone number, description, web site, and company name
+•	Ability to search for contacts by first name, last name or both
+•	Ability to merge duplicate contacts
+•	Bonus Points: 
