@@ -4,6 +4,7 @@
 #include <ctime>
 #include "structure1.h"
 #include "dataManip.h"
+#include <stdlib.h>
 using namespace std;
 
 dataManip backup;
@@ -28,11 +29,13 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 	6-restore from backup
 	7- backup current data
 	*//**/
-	cout << "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
+	system("CLS");//windows only control, don't run on mac/unix
+	cout <<flush<< "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
 	cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View historical transactions\n3 - View account summary\n4 - Search for transactions\n5 - Backup & Restore Data\n6 - Save & Exit\n" << endl;
 	
 	while (true) //loop "infinitely" until break statement is reached
 	{
+		int id = -1;
 		int answer;
 		cin.exceptions(istream::failbit);
 		try {
@@ -51,6 +54,14 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 				addAccount(data);
 				break;
 			case 1:
+				 id=grabAccountId(data);
+				if(id==-1)
+				{
+					cout << "ERROR:Account Not Found" << endl;
+				}
+				else {
+					modifyExistData(id, data);
+				}
 				break;
 			case 2:
 				break;
@@ -79,10 +90,10 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this to modify an existing accout (just removed the type of account)*/
 {
 	bool whilBrk = true;
-	char yn;
+	string yn;
 	while (whilBrk)
 	{
-		cout << "Please enter the credit or debit you will be adding to " << data[x].name << ":" << endl;
+		cout << "Please enter the credit or debit you will be adding to(numbers only) " << data[x].name << ":" << endl;
 		float holder;
 		cin >> holder;
 		data[x].detail.balance += holder;
@@ -98,14 +109,14 @@ void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this
 											  will be added to the history vector*/
 		cout << "Would you like to add another entry?(Y or N) " << endl;
 		cin >> yn;
-		if(yn=='Y'||yn=='y')
+		if(yn=="Y"||yn=="y")//changed this to string so no need to add a try catch block -DR
 		{
 			modifyExistData(x, data);
 		}
 		else
 		{
 			cout << "Now exiting to Main Menu" << endl;
-			whilBrk = false;
+			mainMenu(data);
 		}
 
 
@@ -184,7 +195,30 @@ void menus::getInfoAccount(int x, vector<structure1::customer>& data)
 	else
 		cout << "Savings" << endl;
 	cout << "Current balance: " << data[x].detail.balance << endl;
-
+	cout << "History of all transactions are below" << endl;
+	cout << "***************************************" << endl;
+	for(int index = 0;index<data[x].detail.history.size();index++)
+	{
+		cout << data[x].detail.history[index] << endl;
+	}
+	cout << "*****************************************" << endl;
+	cout << "END OF HISTORY" << endl;
 }
 
+int menus::grabAccountId(vector<structure1::customer>& data)
+{
+	cout << "Please enter your pin to access your account" << endl;
+	string pin;
+	cin >> pin;
+	int vectId=-1;//This makes it so if wrong pin is entered it loops to back menu
+	for(int x = 0;x<data.size();x++)
+	{
+		if(pin==data[x].detail.pin)
+		{
+			vectId = data[x].vectorID;//This allow to grab the user vector id
+		}
+	}
+	
+	return vectId;
+}
 
