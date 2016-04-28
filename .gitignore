@@ -6,7 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-*.db
+*.VC.opendb
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -211,3 +211,4 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 /financeCalc/financeCalc.VC.VC.opendb
+/financeCalc/main/Backup 
