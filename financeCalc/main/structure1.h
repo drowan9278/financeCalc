@@ -12,6 +12,9 @@ public:
 		float balance=0;
 		vector<string> history;/*This is where I figured we could add the history of the balance and create a easy way to print it*/
 		string pin;
+		
+		
+
 	};
 	struct customer
 	{

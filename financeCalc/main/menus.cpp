@@ -5,6 +5,7 @@
 #include "structure1.h"
 #include "dataManip.h"
 #include <stdlib.h>
+
 using namespace std;
 
 dataManip backup;
@@ -66,6 +67,15 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 			case 2:
 				break;
 			case 3:
+				id = grabAccountId(data);
+				if(id==-1)
+				{
+					cout << "ERROR: Account Not Found" << endl;
+				}
+				else
+				{
+					getInfoAccount(id, data);
+				}
 				break;
 			case 4:
 				break;
@@ -195,7 +205,7 @@ void menus::getInfoAccount(int x, vector<structure1::customer>& data)
 	else
 		cout << "Savings" << endl;
 	cout << "Current balance: " << data[x].detail.balance << endl;
-	cout << "History of all transactions are below" << endl;
+	cout << "History of all transactions are below for " <<data[x].name<< endl;
 	cout << "***************************************" << endl;
 	for(int index = 0;index<data[x].detail.history.size();index++)
 	{
@@ -203,6 +213,8 @@ void menus::getInfoAccount(int x, vector<structure1::customer>& data)
 	}
 	cout << "*****************************************" << endl;
 	cout << "END OF HISTORY" << endl;
+	system("pause");
+	mainMenu(data);
 }
 
 int menus::grabAccountId(vector<structure1::customer>& data)
