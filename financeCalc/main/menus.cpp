@@ -32,7 +32,7 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 	*//**/
 	system("CLS");//windows only control, don't run on mac/unix
 	cout <<flush<< "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
-	cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View historical transactions\n3 - View account summary\n4 - Search for transactions\n5 - Backup & Restore Data\n6 - Save & Exit\n" << endl;
+	cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View account summary\n3 - View historical transactions\n4 - Search for transactions\n5 - Save & Exit\n6 - Restore from Backup\n" << endl;
 	
 	while (true) //loop "infinitely" until break statement is reached
 	{
@@ -65,6 +65,15 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 				}
 				break;
 			case 2:
+				id = grabAccountId(data);
+				if (id == -1)
+				{
+					cout << "ERROR: Account Not Found" << endl;
+				}
+				else
+				{
+					getInfoAccount(id, data);
+				}
 				break;
 			case 3:
 				id = grabAccountId(data);
@@ -74,7 +83,7 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 				}
 				else
 				{
-					getInfoAccount(id, data);
+					getTransactions(id, data);
 				}
 				break;
 			case 4:
@@ -97,13 +106,14 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 
 }
 
-void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this to modify an existing accout (just removed the type of account)*/
+void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this to modify an existing account (just removed the type of account)*/
 {
+	system("CLS");//windows only control, don't run on mac/unix
 	bool whilBrk = true;
 	string yn;
 	while (whilBrk)
 	{
-		cout << "Please enter the credit or debit you will be adding to(numbers only) " << data[x].name << ":" << endl;
+		cout << "\nPlease enter the credit or debit (positive or negative numbers only)\n that you will be adding to " << data[x].name << ":" << endl;
 		float holder;
 		cin >> holder;
 		data[x].detail.balance += holder;
@@ -117,23 +127,28 @@ void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this
 		string newDesc = desc + " **Cr/Db = " + to_string(holder) + " ** Time of transaction: " + dt;
 		data[x].detail.history.push_back(newDesc);/*This will add the description the amount and time current time and then
 											  will be added to the history vector*/
-		cout << "Would you like to add another entry?(Y or N) " << endl;
-		cin >> yn;
-		if(yn=="Y"||yn=="y")//changed this to string so no need to add a try catch block -DR
+		while (true)
 		{
-			modifyExistData(x, data);
-		}
-		else
-		{
-			cout << "Now exiting to Main Menu" << endl;
-			mainMenu(data);
-		}
+			cout << "\nWould you like to add another entry?(Y or N) " << endl;
+			cin >> yn;
+			if (yn == "Y" || yn == "y")//changed this to string so no need to add a try catch block -DR
+			{
+				modifyExistData(x, data);
+			}
+			else if (yn == "N" || yn == "n")
+			{
+				cout << "Now exiting to Main Menu...\n" << endl;
+				mainMenu(data);
+			}
+			else
+				continue;
 
-
+		}
 	}
 }
 void menus::addAccount(vector<structure1::customer>& data1)
 {
+	system("CLS");//windows only control, don't run on mac/unix
 	structure1::customer data;
 	
 	string tempPIN;
@@ -142,6 +157,7 @@ void menus::addAccount(vector<structure1::customer>& data1)
 	cout << "\nWould you like to add an account? (Y or N)" << endl;
 	while (true) //loops until break statement reached
 	{
+		string yn;
 		char answer;
 		cin.ignore(1000, '\n');
 		cin >> answer;
@@ -162,7 +178,7 @@ void menus::addAccount(vector<structure1::customer>& data1)
 			data.type = cs;
 			do
 			{
-				cout << "Please enter a unique PIN for this account: " << endl;
+				cout << "Please enter a unique password for this account: " << endl;
 				cin >> tempPIN;
 				for (int i = 0; i < sizeof(data); i++)
 				{
@@ -172,22 +188,34 @@ void menus::addAccount(vector<structure1::customer>& data1)
 				if (!matchedPIN)
 					data.detail.pin = tempPIN;
 			} while (matchedPIN);
-			cout << "\nYour PIN is : " << data.detail.pin << "\n\tDO NOT FORGET YOUR PIN!\n\t\tIT IS THE ONLY WAY TO ACCESS YOUR ACCOUNT!\n" << endl;
+			cout << "\nYour password is : " << data.detail.pin << "\n\tDO NOT FORGET YOUR PASSWORD!\n\t\tIT IS THE ONLY WAY TO ACCESS YOUR ACCOUNT!\n" << endl;
 			
 			data.vectorID=size(data1);
 			data1.push_back(data);
-			modifyExistData(data.vectorID, data1);
-			mainMenu(data1);
-			break;
+			while (true)
+			{
+				cout << "Would you like to add any transactions to this account? (Y or N)" << endl;
+
+				cin >> yn;
+				if (yn == "Y" || yn == "y")
+				{
+					modifyExistData(data.vectorID, data1);
+					break;
+				}
+				else if (yn == "N" || yn == "n")
+					break;
+			}
+			//intentional fallthrough
 		case 'N':
 		case 'n':
+			cout << "Now exiting to Main Menu...\n" << endl;
 			mainMenu(data1);
 			
 			break;
 
 		default:
-			cout << "\nYou have entered an invalid response!:" << endl;;
-			cout << "\nWould you like to add an account? (Y or N)";
+			cout << "\nYou have entered an invalid response!" << endl;;
+			cout << "\nWould you like to add an account? (Y or N)" <<endl;
 			continue; //jumps to top of loop
 		}
 		break; //breaks out of loop only when valid response is recieved
@@ -198,6 +226,7 @@ void menus::addAccount(vector<structure1::customer>& data1)
 }
 void menus::getInfoAccount(int x, vector<structure1::customer>& data)
 {
+	system("CLS");//windows only control, don't run on mac/unix
 	cout << "\n\n\t\t" << data[x].name << endl;
 	cout << "Type: ";
 	if (data[x].type == 'c' || data[x].type == 'C')
@@ -205,21 +234,37 @@ void menus::getInfoAccount(int x, vector<structure1::customer>& data)
 	else
 		cout << "Savings" << endl;
 	cout << "Current balance: " << data[x].detail.balance << endl;
-	cout << "History of all transactions are below for " <<data[x].name<< endl;
+	cout << "Would you like to view transaction history? (Y or N)" << endl;
+	string yn;
+	cin >> yn;
+	if (yn == "Y" || yn == "y")
+		getTransactions(x, data);
+	mainMenu(data);
+}
+
+void menus::getTransactions(int x, vector<structure1::customer>& data)
+{
+	system("CLS");//windows only control, don't run on mac/unix
+	cout << "History of all transactions are below for " << data[x].name << endl;
 	cout << "***************************************" << endl;
-	for(int index = 0;index<data[x].detail.history.size();index++)
+	for (int index = 0; index<data[x].detail.history.size(); index++)
 	{
 		cout << data[x].detail.history[index] << endl;
 	}
 	cout << "*****************************************" << endl;
 	cout << "END OF HISTORY" << endl;
-	system("pause");
+	//system("pause");
+	cout << "Press ENTER to continue...";
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cin.get();
+	//better way to do this than making a system call
 	mainMenu(data);
 }
 
 int menus::grabAccountId(vector<structure1::customer>& data)
 {
-	cout << "Please enter your pin to access your account" << endl;
+	system("CLS");//windows only control, don't run on mac/unix
+	cout << "Please enter your password to access your account" << endl;
 	string pin;
 	cin >> pin;
 	int vectId=-1;//This makes it so if wrong pin is entered it loops to back menu

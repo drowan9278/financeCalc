@@ -17,6 +17,7 @@ public:
 	void modifyExistData(int x, vector<structure1::customer> &data);
 	void addAccount(vector<structure1::customer>& data);
 	void getInfoAccount(int x, vector<structure1::customer>& data);
+	void getTransactions(int x, vector<structure1::customer>& data);
 	int grabAccountId(vector<structure1::customer>& data);// Use this to verify accounts and allow user to select account using pin
 	
 };
