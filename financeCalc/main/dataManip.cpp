@@ -4,6 +4,7 @@
 #include "structure1.h"
 #include <iostream>
 #include <ctime>
+
 using namespace std;
 
 menus menu;
@@ -30,18 +31,28 @@ void dataManip::Backup(vector<structure1::customer>& data)
 		time(&rawtime);
 		timeinfo = localtime(&rawtime);
 		string testFile = "Backup.dat";
-		strftime(buffer, 80, "%c.dat", timeinfo);
-		string fileName =  buffer+ testFile;
+		strftime(buffer, 80, "Backup at %F %I.%M.dat", timeinfo);
+		string fileName =  buffer;
 		ofstream fileBack;
 		fileBack.open(testFile.c_str(), ios::in|ios::binary|ios::trunc);
-		
-			fileBack.write((char*)&data, data.size());
-			cout << "File Succefully Backed Up" << endl;
+		if(fileBack)
+		{
+			for(int x = 0;x<data.size();x++)
+			{
+				fileBack.write((char*)&data[x].detail.pin, data[x].detail.pin.size());
+				fileBack.write(reinterpret_cast<const char*>(&data[x].detail.history), data[x].detail.history.size() * sizeof(data[x].detail.history));
+			}
+			
+			cout << "Done" << endl;
 			fileBack.close();
-		
-		
-		
+		}
+		else
+		{
 			cout << "Backup operation failed" << endl;
+		}
+		system("pause");
+		
+			
 		
 		menu.mainMenu(data);
 	}
@@ -51,4 +62,12 @@ void dataManip::Backup(vector<structure1::customer>& data)
 		menu.mainMenu(data);
 
 	}
+
+}
+void dataManip::BackupRead(vector<structure1::customer>& data)
+{
+	ofstream fileBack;
+	fileBack.open("Backup.dat", ios::out | ios::binary | ios::trunc);
+
+
 }
