@@ -1,0 +1,95 @@
+﻿  structure1.cpp
+  stdafx.cpp
+  menus.cpp
+i:\programs\c++ programs\financecalc\financecalc\main\menus.cpp(45): warning C4101: 'fail': unreferenced local variable
+i:\programs\c++ programs\financecalc\financecalc\main\menus.cpp(125): warning C4996: 'ctime': This function or variable may be unsafe. Consider using ctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\time.h(475): note: see declaration of 'ctime'
+i:\programs\c++ programs\financecalc\financecalc\main\menus.cpp(193): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  main.cpp
+  linkedList.cpp
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(48): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(48): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(49): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(49): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(50): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(50): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(51): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(51): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(52): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(52): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(53): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(53): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(54): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(54): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(55): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(55): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(56): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(56): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(57): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(57): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(58): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(58): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(59): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(60): error C2065: 'cin': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(64): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(65): error C2065: 'cin': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(67): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(67): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(70): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(71): error C2065: 'cin': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(73): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(73): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(76): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(77): error C2065: 'cin': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(78): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(79): error C2065: 'cin': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(81): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(81): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(86): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(86): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(89): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(90): error C2065: 'cin': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(92): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(92): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(96): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(96): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(104): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(104): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(108): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(108): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(113): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(113): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(150): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(150): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(160): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(160): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(170): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(170): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(181): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(182): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(182): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(201): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(201): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(216): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(216): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(229): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(229): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(241): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(241): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(244): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(244): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(255): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(255): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(259): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(259): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(262): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(265): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(265): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(280): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(280): error C2065: 'endl': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(301): error C2065: 'cout': undeclared identifier
+i:\programs\c++ programs\financecalc\financecalc\main\linkedlist.cpp(301): error C2065: 'endl': undeclared identifier
+  dataManip.cpp
+i:\programs\c++ programs\financecalc\financecalc\main\datamanip.cpp(31): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\time.h(505): note: see declaration of 'localtime'
+  Generating Code...
