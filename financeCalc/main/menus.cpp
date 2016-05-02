@@ -28,7 +28,6 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 	4-search for transactions
 	5-save and exit
 	6-restore from backup
-	7- backup current data
 	*//**/
 	system("CLS");//windows only control, don't run on mac/unix
 	cout <<flush<< "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
@@ -41,7 +40,7 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 		cin.exceptions(istream::failbit);
 		try {
 			cin >> answer;
-		}
+			}
 		catch(ios_base::failure &fail){
 			cout << "ERROR:Bad Value, numbers only, Enter a integer" << endl;
 			cin.clear();
@@ -89,11 +88,9 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 			case 4:
 				break;
 			case 5:
+				backup.Backup(data);
 				break;
 			case 6:
-				break;
-			case 7:
-				backup.Backup(data);
 				break;
 			default:
 				cout << "\n\tINVALID RESPONSE RECIEVED\n\n";
@@ -109,13 +106,31 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this to modify an existing account (just removed the type of account)*/
 {
 	system("CLS");//windows only control, don't run on mac/unix
-	bool whilBrk = true;
 	string yn;
-	while (whilBrk)
+	int count = 0;
+	while (true)
 	{
 		cout << "\nPlease enter the credit or debit (positive or negative numbers only)\n that you will be adding to " << data[x].name << ":" << endl;
 		float holder;
-		cin >> holder;
+		while (true)
+		{
+			try {
+				cin >> holder;
+				break;
+			}
+			catch (ios_base::failure &fail) {
+				cout << "ERROR: Bad Value, numbers only, Enter a integer" << endl;
+				cin.clear();
+				string tmp;
+				getline(cin, tmp);
+			}
+			count++;
+			if (count == 3)
+			{
+				mainMenu(data);
+				break;
+			}
+		}
 		data[x].detail.balance += holder;
 		cout << "Please add a description for this entry: " << endl;
 		string desc;
@@ -179,7 +194,8 @@ void menus::addAccount(vector<structure1::customer>& data1)
 			do
 			{
 				cout << "Please enter a unique password for this account: " << endl;
-				cin >> tempPIN;
+				cin.ignore(1000, '\n');
+				getline(cin, tempPIN);
 				for (int i = 0; i < sizeof(data); i++)
 				{
 					if (data.detail.pin == tempPIN)
@@ -266,7 +282,8 @@ int menus::grabAccountId(vector<structure1::customer>& data)
 	system("CLS");//windows only control, don't run on mac/unix
 	cout << "Please enter your password to access your account" << endl;
 	string pin;
-	cin >> pin;
+	cin.ignore(1000, '\n');
+	getline(cin, pin);
 	int vectId=-1;//This makes it so if wrong pin is entered it loops to back menu
 	for(int x = 0;x<data.size();x++)
 	{
