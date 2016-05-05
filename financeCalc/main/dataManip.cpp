@@ -23,7 +23,7 @@ void dataManip::Backup(vector<structure1::customer>& data)
 	string Yn;
 	cin >> Yn;
 	/* only will be able to store previous 100 transactions*/
-	if(Yn=="YES")
+	if (Yn == "YES")
 	{
 		cout << "Starting Back Up" << endl;
 		time_t rawtime;
@@ -33,28 +33,29 @@ void dataManip::Backup(vector<structure1::customer>& data)
 		timeinfo = localtime(&rawtime);
 		string testFile = "Backup.dat";
 		strftime(buffer, 80, "Backup at %F %I.%M.dat", timeinfo);
-		string fileName =  buffer;
+		string fileName = buffer;
 		ofstream fileBack;
-		fileBack.open(testFile.c_str(), ios::in|ios::binary|ios::trunc);
-		if(fileBack)
+		fileBack.open(testFile.c_str(), ios::in | ios::binary | ios::trunc);
+		if (fileBack)
 		{
-			for(int x = 0;x<data.size();x++)
+			for (int x = 0;x < data.size();x++)
 			{
-				//fileBack << data[x].detail.pin;
-				
-				
 				string bufferArray[100];
-				for(int y=0; y<data[x].detail.history.size() && y<100 ;y++)
+				char pinChar[8];
+				strncpy(pinChar, data[x].detail.pin.c_str(), data[x].detail.pin.length());
+				fileBack.write(pinChar, sizeof(pinChar));
+				for (int y = 0; y < 100;y++)
 				{
-					bufferArray[y] = data[x].detail.history[y];/* This makes it so most recent transactions are stored*/
-					fileBack.write((char*)bufferArray[y].c_str(), 400);
+					if (y < data[x].detail.history[y].size())
+						bufferArray[y] = data[x].detail.history[data[x].detail.history.size() - y];/* This makes it so most recent transactions are stored*/
+					char buff[200];
+					strncpy(buff, bufferArray[y].c_str(), bufferArray[y].length());
+					fileBack.write(buff, sizeof(buff));
 				}
-				
-				//fileBack.write((char*)&bufferArray, sizeof(bufferArray));
-				//fileBack.write((char*)&data[x].detail.balance, sizeof(data[x].detail.balance));
-				//fileBack.write((char*)&data[x].name, data[x].name.size());
-				//fileBack.write((char*)&data[x].vectorID, sizeof(data[x].vectorID));
-				//fileBack.write(&data[x].type, sizeof(data[x].type));
+				fileBack.write(reinterpret_cast<char *>(&data[x].detail.balance), sizeof(data[x].detail.balance));
+				fileBack.write(reinterpret_cast<char *>(&data[x].vectorID), sizeof(data[x].vectorID));
+				fileBack.write(&data[x].type, sizeof(data[x].type));
+
 			}
 			cout << "Done" << endl;
 			fileBack.close();
@@ -88,10 +89,14 @@ void dataManip::BackupRead(vector<structure1::customer>& data1)
 		{
 			//fileBack >> data.detail.pin;
 			string bufferArray[100];
-			for (int y = 0; y < 100;y++) {
-				fileBack.read((char*)bufferArray[y].c_str(), 400);
+			for (int y = 0;  y<100;y++)
+			{
+				char buff[1000];
+				fileBack.read(buff, sizeof(buff));
+				string charString(buff);
+				data.detail.history.push_back(charString);
+				
 			}
-			int y = 0;
 			/*
 			
 			fileBack.read((char*)&data.detail.balance, sizeof(data.detail.balance));
