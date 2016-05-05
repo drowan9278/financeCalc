@@ -1,5 +1,5 @@
 #include"linkedList.h"
-#include "menus.h"
+
 #include <string>
 #include <iostream>
 #include <ctime>
@@ -18,8 +18,7 @@ linkedList::~linkedList()
 
 using namespace std;
 
-dataManip backup;/* proably won't need this-DR*/
-
+/*deleted data backup was causing errors*/
 typedef struct Info
 {
 	char name[100];
@@ -34,7 +33,7 @@ typedef struct ListNode
 
 void linkedList::searchTransactions(int x, vector<structure1::customer>& data)
 {
-	int x;
+	
 };
 /* The linked list was already declared in the header files, I highly suggest downloading resharper fixed it within 5min
 also don't declare  fucntions within eachother -DR*/
