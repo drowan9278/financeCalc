@@ -35,29 +35,27 @@ void dataManip::Backup(vector<structure1::customer>& data)
 		strftime(buffer, 80, "Backup at %F %I.%M.dat", timeinfo);
 		string fileName =  buffer;
 		ofstream fileBack;
-		
-		
 		fileBack.open(testFile.c_str(), ios::in|ios::binary|ios::trunc);
-		
-		
 		if(fileBack)
 		{
 			for(int x = 0;x<data.size();x++)
 			{
-				fileBack.write((char*)&data[x].detail.pin, data[x].detail.pin.size());
+				//fileBack << data[x].detail.pin;
+				
+				
 				string bufferArray[100];
-				for(int y=0; y<data[x].detail.history.size() || y<100 ;y++)
+				for(int y=0; y<data[x].detail.history.size() && y<100 ;y++)
 				{
-					bufferArray[y] = data[x].detail.history[y];
+					bufferArray[y] = data[x].detail.history[y];/* This makes it so most recent transactions are stored*/
+					fileBack.write((char*)bufferArray[y].c_str(), 400);
 				}
-				fileBack.write((char*)bufferArray, sizeof(bufferArray));
-				fileBack.write((char*)&data[x].detail.balance, sizeof(data[x].detail.balance));
-				fileBack.write((char*)&data[x].name, data[x].name.size());
-				fileBack.write((char*)&data[x].vectorID, sizeof(data[x].vectorID));
-				fileBack.write(&data[x].type, sizeof(data[x].type));
-
+				
+				//fileBack.write((char*)&bufferArray, sizeof(bufferArray));
+				//fileBack.write((char*)&data[x].detail.balance, sizeof(data[x].detail.balance));
+				//fileBack.write((char*)&data[x].name, data[x].name.size());
+				//fileBack.write((char*)&data[x].vectorID, sizeof(data[x].vectorID));
+				//fileBack.write(&data[x].type, sizeof(data[x].type));
 			}
-			
 			cout << "Done" << endl;
 			fileBack.close();
 		}
@@ -66,9 +64,6 @@ void dataManip::Backup(vector<structure1::customer>& data)
 			cout << "Backup operation failed" << endl;
 		}
 		system("pause");
-		
-			
-		
 		menu.mainMenu(data);
 	}
 	else
@@ -79,10 +74,39 @@ void dataManip::Backup(vector<structure1::customer>& data)
 	}
 
 }
-void dataManip::BackupRead(vector<structure1::customer>& data)
-{
-	ofstream fileBack;
-	fileBack.open("Backup.dat", ios::out | ios::binary | ios::trunc);
 
+
+void dataManip::BackupRead(vector<structure1::customer>& data1)
+{
+	structure1::customer data;
+	ifstream fileBack;
+	fileBack.open("Backup.dat", ios::in | ios::binary);
+	if (fileBack)
+	{
+		int x = 0;
+		while(!fileBack.eof())
+		{
+			//fileBack >> data.detail.pin;
+			string bufferArray[100];
+			for (int y = 0; y < 100;y++) {
+				fileBack.read((char*)bufferArray[y].c_str(), 400);
+			}
+			int y = 0;
+			/*
+			
+			fileBack.read((char*)&data.detail.balance, sizeof(data.detail.balance));
+			fileBack.read((char*)&data.name, data.name.size());
+			fileBack.read((char*)&data.vectorID, sizeof(data.vectorID));
+			fileBack.read(&data.type, sizeof(data.type));*/
+			//for (int y = 0; y<data.detail.history.size() || y<100;y++)
+			//{
+			//	 data.detail.history.push_back(bufferArray[y]);/* Pushes contents of previous array into file*/
+			//}
+
+
+		}
+		cout << "Done" << endl;
+		fileBack.close();
+	}
 
 }

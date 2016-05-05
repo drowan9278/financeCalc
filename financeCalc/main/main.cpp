@@ -1,6 +1,6 @@
 // main.cpp : Defines the entry point for the console application.
 //
-
+#include "dataManip.h"
 #include "stdafx.h"
 #include "menus.h"
 #include "structure1.h"
@@ -12,10 +12,11 @@ using namespace std;
 
 int main()
 {
-
+	dataManip readBackup;
 	structure1 obj;
 	vector<structure1::customer> accounts =  vector<structure1::customer>();
 	menus accountMenus;
+	readBackup.BackupRead(accounts);
 	//int x = accountMenus.addAccount(accounts);
 	accountMenus.mainMenu(accounts);
 	vector<structure1::customer>* accountPtr = &accounts;
