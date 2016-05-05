@@ -11,7 +11,7 @@ public:
 	~linkedList();
 
 
-	void linkedList::searchTransactions(int x, vector<structure1::customer>& data)
-	{
-	
-	};
+	void linkedList::searchTransactions(int x, vector<structure1::customer>& data);
+	void print_comparisons(<unknown>* ln);
+};
+#endif

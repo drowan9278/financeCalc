@@ -18,7 +18,7 @@ linkedList::~linkedList()
 
 using namespace std;
 
-dataManip backup;
+dataManip backup;/* proably won't need this-DR*/
 
 typedef struct Info
 {
@@ -34,21 +34,23 @@ typedef struct ListNode
 
 void linkedList::searchTransactions(int x, vector<structure1::customer>& data)
 {
-	void print_comparisons(ListNode* ln)
-	{
-		assert(ln);
+	int x;
+};
+/* The linked list was already declared in the header files, I highly suggest downloading resharper fixed it within 5min
+also don't declare  fucntions within eachother -DR*/
+void print_comparisons(ListNode* ln)
+{
+	assert(ln);
 
-		ListNode* cur = ln;
-		ListNode* next = cur->next;
-		for (; next; cur = next, next = next->next) {
-			if (strcmp(cur->info.name, next->info.name) == 0)
-				printf("Same name\n");
-			else
-				printf("Diff name\n");
-		}
+	ListNode* cur = ln;
+	ListNode* next = cur->next;
+	for (; next; cur = next, next = next->next) {
+		if (strcmp(cur->info.name, next->info.name) == 0)
+			printf("Same name\n");
+		else
+			printf("Diff name\n");
 	}
 };
-
 
 
 
