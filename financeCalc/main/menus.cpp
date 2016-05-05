@@ -79,6 +79,7 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 				if(id==-1)
 				{
 					cout << "ERROR: Account Not Found" << endl;
+					continue;
 				}
 				else
 				{

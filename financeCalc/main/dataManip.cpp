@@ -38,7 +38,7 @@ void dataManip::Backup(vector<structure1::customer>& data)
 		fileBack.open(testFile.c_str(), ios::in | ios::binary | ios::trunc);
 		if (fileBack)
 		{
-			for (int x = 0;x < data.size();x++)
+			for (int x = 0;x < data.size()-1;x++)
 			{
 				string bufferArray[100];
 				char pinChar[8];
@@ -46,8 +46,9 @@ void dataManip::Backup(vector<structure1::customer>& data)
 				fileBack.write(pinChar, sizeof(pinChar));
 				for (int y = 0; y < 100;y++)
 				{
-					if (y < data[x].detail.history[y].size())
-						bufferArray[y] = data[x].detail.history[data[x].detail.history.size() - y];/* This makes it so most recent transactions are stored*/
+					if (y < data[x].detail.history.size()) {
+						bufferArray[y] = data[x].detail.history[data[x].detail.history.size() - y -1];
+					}/* This makes it so most recent transactions are stored*/
 					char buff[200];
 					strncpy(buff, bufferArray[y].c_str(), bufferArray[y].length());
 					fileBack.write(buff, sizeof(buff));
@@ -55,6 +56,9 @@ void dataManip::Backup(vector<structure1::customer>& data)
 				fileBack.write(reinterpret_cast<char *>(&data[x].detail.balance), sizeof(data[x].detail.balance));
 				fileBack.write(reinterpret_cast<char *>(&data[x].vectorID), sizeof(data[x].vectorID));
 				fileBack.write(&data[x].type, sizeof(data[x].type));
+				char nameChar[30];
+				strncpy(nameChar, data[x].name.c_str(), data[x].name.length());
+				fileBack.write(nameChar, sizeof(nameChar));
 
 			}
 			cout << "Done" << endl;
@@ -87,27 +91,27 @@ void dataManip::BackupRead(vector<structure1::customer>& data1)
 		int x = 0;
 		while(!fileBack.eof())
 		{
-			//fileBack >> data.detail.pin;
+			char pinChar[8];
+			fileBack.read(pinChar, sizeof(pinChar));
+			string pin(pinChar);
+			data.detail.pin = pin;
+			
 			string bufferArray[100];
 			for (int y = 0;  y<100;y++)
 			{
-				char buff[1000];
+				char buff[200];
 				fileBack.read(buff, sizeof(buff));
 				string charString(buff);
 				data.detail.history.push_back(charString);
-				
 			}
-			/*
-			
-			fileBack.read((char*)&data.detail.balance, sizeof(data.detail.balance));
-			fileBack.read((char*)&data.name, data.name.size());
-			fileBack.read((char*)&data.vectorID, sizeof(data.vectorID));
-			fileBack.read(&data.type, sizeof(data.type));*/
-			//for (int y = 0; y<data.detail.history.size() || y<100;y++)
-			//{
-			//	 data.detail.history.push_back(bufferArray[y]);/* Pushes contents of previous array into file*/
-			//}
-
+			fileBack.read(reinterpret_cast<char*>(&data.detail.balance), sizeof(data.detail.balance));
+			fileBack.read(reinterpret_cast<char *>(&data.vectorID), sizeof(data.vectorID));
+			fileBack.read(&data.type, sizeof(data.type));
+			char nameChar[30];
+			fileBack.read(nameChar, sizeof(nameChar));
+			string name(nameChar);
+			data.name = name;
+			data1.push_back(data);
 
 		}
 		cout << "Done" << endl;
