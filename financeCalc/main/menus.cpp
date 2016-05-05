@@ -277,6 +277,28 @@ void menus::getTransactions(int x, vector<structure1::customer>& data)
 	mainMenu(data);
 }
 
+void menus::searchTransactions(int x, vector<structure1::customer>& data)
+{
+
+	system("CLS");
+	cout << "Here is all search transcations details..... " << data[x].name << endl;
+	cout << "***************************************" << endl;
+	for (int index = 0; index<data[x].detail.history.size(); index++)
+	{
+		cout << data[x].detail.history[index] << endl;
+	}
+	cout << "*****************************************" << endl;
+	cout << "END OF TRANSACTIONS" << endl;
+	//system("pause");
+	cout << "Press ENTER to continue...";
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cin.get();
+	//better way to do this than making a system call
+	mainMenu(data);
+}
+
+
+
 int menus::grabAccountId(vector<structure1::customer>& data)
 {
 	system("CLS");//windows only control, don't run on mac/unix
