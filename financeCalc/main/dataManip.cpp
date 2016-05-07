@@ -39,7 +39,7 @@ void dataManip::Backup(vector<structure1::customer>& data)
 		fileBack.open(testFile.c_str(), ios::in | ios::binary | ios::trunc);
 		if (fileBack)
 		{
-			for (int x = 0;x < data.size()-1;x++)
+			for (int x = 0;x < data.size();x++)
 			{
 				string bufferArray[100];
 				char pinChar[8];
@@ -97,7 +97,7 @@ void dataManip::BackupRead(vector<structure1::customer>& data1)
 			string pin(pinChar);
 			pin.erase(remove(pin.begin(), pin.end(), 'Ì'), pin.end());
 			
-			data.detail.pin = pin;
+			data.detail.pin = pin.substr(0,8);
 			
 			string bufferArray[100];
 			for (int y = 0;  y<100;y++)
