@@ -18,6 +18,7 @@ public:
 	void addAccount(vector<structure1::customer>& data);
 	void getInfoAccount(int x, vector<structure1::customer>& data);
 	void getTransactions(int x, vector<structure1::customer>& data);
+	void deleteAccount(vector<structure1::customer>& data);
 	void searchTransactions(int x,vector<structure1::customer>& data);
 	int grabAccountId(vector<structure1::customer>& data);// Use this to verify accounts and allow user to select account using pin
 };

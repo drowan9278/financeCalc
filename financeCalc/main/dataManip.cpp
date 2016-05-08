@@ -128,7 +128,7 @@ void dataManip::BackupRead(vector<structure1::customer>& data1)
 
 		}
 		cout << "Done" << endl;
-		cout << data1[0].name << endl;
+		
 		fileBack.close();
 	}
 
