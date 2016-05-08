@@ -58,7 +58,10 @@ void dataManip::Backup(vector<structure1::customer>& data)
 				fileBack.write(reinterpret_cast<char *>(&data[x].vectorID), sizeof(data[x].vectorID));
 				fileBack.write(&data[x].type, sizeof(data[x].type));
 				char nameChar[30];
-				strncpy(nameChar, data[x].name.c_str(), data[x].name.length());
+				string nameHold = data[x].name;
+				nameHold.resize(30, 'Ì');
+				strncpy(nameChar, nameHold.c_str(), nameHold.length());
+
 				fileBack.write(nameChar, sizeof(nameChar));
 
 			}
