@@ -90,13 +90,16 @@ void dataManip::BackupRead(vector<structure1::customer>& data1)
 	if (fileBack)
 	{
 		int x = 0;
-		while(!fileBack.eof())
+		while(!fileBack.fail())
 		{
 			char pinChar[8];
+			if (fileBack.eof())
+				break;
 			fileBack.read(pinChar, sizeof(pinChar));
 			string pin(pinChar);
 			pin.erase(remove(pin.begin(), pin.end(), 'Ì'), pin.end());
-			
+			if (fileBack.eof())
+				break;
 			data.detail.pin = pin.substr(0,8);
 			
 			string bufferArray[100];
@@ -117,6 +120,8 @@ void dataManip::BackupRead(vector<structure1::customer>& data1)
 			name.erase(remove(name.begin(), name.end(), 'Ì'), name.end());
 			data.name = name;
 			data1.push_back(data);
+			if (fileBack.eof())
+				break;
 
 		}
 		cout << "Done" << endl;
