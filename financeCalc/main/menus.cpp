@@ -162,6 +162,7 @@ void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this
 			else if (yn == "N" || yn == "n")
 			{
 				cout << "Now exiting to Main Menu...\n" << endl;
+				mainMenu(data);
 				return;
 			}
 		}
