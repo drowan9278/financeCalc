@@ -4,6 +4,7 @@
 #include <ctime>
 #include "structure1.h"
 #include "dataManip.h"
+#include "linkedList.h"
 #include <stdlib.h>
 
 using namespace std;
@@ -87,6 +88,16 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 				}
 				break;
 			case 4:
+				id = grabAccountId(data);
+				if (id == -1)
+				{
+					cout << "ERROR: Account Not Found" << endl;
+					continue;
+				}
+				else
+				{
+					searchTransactions(id, data);
+				}
 				break;
 			case 5:
 				backup.Backup(data);
@@ -280,8 +291,7 @@ void menus::getTransactions(int x, vector<structure1::customer>& data)
 
 void menus::searchTransactions(int x, vector<structure1::customer>& data)
 {
-
-	system("CLS");
+	system("CLS");//windows only control, don't run on mac/unix
 	cout << "Here is all search transcations details..... " << data[x].name << endl;
 	cout << "***************************************" << endl;
 	for (int index = 0; index<data[x].detail.history.size(); index++)

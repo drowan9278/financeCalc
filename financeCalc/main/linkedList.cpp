@@ -1,3 +1,4 @@
+//#include "linkedList.h"
 //#include <iostream>                                                 
 //#include <string>                                                   
 //#include <fstream>                                                  
@@ -16,6 +17,7 @@
 //
 //int main()
 //{
+//
 //	linkedList menu;
 //	cout << "\n\n\t\t" << data[x].name << endl;
 //	cout << "Type: ";
@@ -148,5 +150,13 @@
 //
 //	head = new_head;                                                //assign head to new head
 //};
+//#endif
 //
-//
+
+linkedList::linkedList()
+{
+}
+
+linkedList::~linkedList()
+{
+}
