@@ -16,6 +16,7 @@ menus::menus()
 
 menus::~menus()
 {
+	
 }
 
 void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access all other menus
@@ -29,6 +30,7 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 	5-save and exit
 	6-restore from backup
 	7- delete account
+	8- add a save point
 	*//**/
 	system("CLS");//windows only control, don't run on mac/unix
 	cout << flush << "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
@@ -48,7 +50,7 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 			string tmp;
 			getline(cin, tmp);
 		}
-
+		string fileName;
 		switch (answer)
 		{
 		case 0:
@@ -95,10 +97,18 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 			exit(EXIT_SUCCESS);
 			break;
 		case 6:
+			cout << "Please enter the file you would like back up from" << endl;
+			
+			cin >> fileName;
+			backup.BackupRead(fileName, data);
+			
 			//restore from backup
 			break;
 		case 7:
 			deleteAccount(data);
+			break;
+		case 8:
+			backup.Backup1(data); //Dont try this willynilly will create a spam of files
 			break;
 		default:
 			cout << "\n\tINVALID RESPONSE RECIEVED\n\n";
@@ -106,7 +116,7 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 			cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View historical transactions\n3 - View account summary\n4 - Search for transactions\n5 - Backup & Restore Data\n6 - Save & Exit\n" << endl;
 			continue; //skips rest of loop and returns to beginning
 		}
-		break;//breaks out of loop once valid response recieved
+		//breaks out of loop once valid response recieved
 	}
 
 }
@@ -152,11 +162,8 @@ void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this
 			else if (yn == "N" || yn == "n")
 			{
 				cout << "Now exiting to Main Menu...\n" << endl;
-				mainMenu(data);
+				return;
 			}
-			else
-				continue;
-
 		}
 	}
 }
