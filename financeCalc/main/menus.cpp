@@ -5,7 +5,7 @@
 #include "structure1.h"
 #include "dataManip.h"
 #include <stdlib.h>
-
+#include "stack.h"
 using namespace std;
 
 dataManip backup;
@@ -35,7 +35,7 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 	system("CLS");//windows only control, don't run on mac/unix
 	cout << flush << "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
 	cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View account summary\n3 - View historical transactions\n4 - Search for transactions\n5 - Save & Exit\n6 - Restore from Backup\n7 - Delete account" << endl;
-
+	
 	while (true) //loop "infinitely" until break statement is reached
 	{
 		int id = -1;
@@ -51,6 +51,8 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 			getline(cin, tmp);
 		}
 		string fileName;
+		stack search;
+		string searchWord;
 		switch (answer)
 		{
 		case 0:
@@ -89,7 +91,10 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 			}
 			break;
 		case 4:
-			//search for account
+			
+			cout << "Please enter the value you want to search for" << endl;
+			cin >> searchWord;
+			search.findTerm(searchWord, data);
 			break;
 		case 5:
 			backup.Backup(data);

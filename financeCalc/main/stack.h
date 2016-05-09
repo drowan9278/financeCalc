@@ -22,7 +22,7 @@ public:
 	~stack();
 
 	void push(string &term, string &acctId);
-	void pop(string &term, string &acctId);
+	void pop();
 	void findTerm(string termSearch, vector<structure1::customer>& data);
 	bool empty();
 };

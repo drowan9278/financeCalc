@@ -1,6 +1,7 @@
 #include "stack.h"
 #include <iostream>
 #include "structure1.h"
+#include "menus.h"
 using namespace std;
 
 
@@ -46,7 +47,10 @@ void stack::push(string &term, string &acctId)
 		top = newNode;
 	}
 }
-void stack::pop(string &term, string &acctId)
+
+
+
+void stack::pop()
 {
 	node *ptr;
 	if (empty())
@@ -56,8 +60,9 @@ void stack::pop(string &term, string &acctId)
 	}
 	else
 	{
-		acctId = top->acctName;
-		term = top->term;
+		string acctId = top->acctName;
+		string term = top->term;
+		cout << " The value was found in " << acctId << "and the transaction was " << term;
 		ptr = top->next;
 		delete top;
 		top = ptr;
@@ -75,9 +80,12 @@ void stack::findTerm( string termSearch, vector<structure1::customer> &data)
 		}
 
 	}
-
-
-
+	while(!empty())
+	{
+		pop();
+	}
+	menus main;
+	main.mainMenu(data);
 }
 
 
