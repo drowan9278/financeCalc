@@ -17,7 +17,7 @@ stack::~stack()
 bool stack::empty()
 {
 	bool value;
-	if (!top)
+	if (top == nullptr)
 	{
 		value = true;
 	}
@@ -38,8 +38,9 @@ void stack::push(string &term, string &acctId)
 
 	if (empty())
 	{
-		top = newNode;
 		newNode->next = nullptr;
+		top = newNode;
+		top->next = nullptr;
 	}
 	else
 	{
@@ -56,6 +57,7 @@ void stack::pop()
 	if (empty())
 	{
 		cout << "The stack does not have any values stored" << endl;
+		
 		return;
 	}
 	else
@@ -70,17 +72,22 @@ void stack::pop()
 }
 void stack::findTerm( string termSearch, vector<structure1::customer> &data)// Here is the search function it searches through all all accounts and finds
 {                                                                           // all transactions that contains the string the user entered
-	for(int x = 0; x< data.size();x++)
+	for(int x = 0; x< data.size()-1;x++)
 	{
-		for(int y = 0; y<data[x].detail.history.size();y++)
+		for(int y = 0; y<data[x].detail.history.size()-1;y++)
 		{
-			if (data[x].detail.history[y].find(termSearch) != std::string::npos) {
+			if (data[x].detail.history[y].find(termSearch) != string::npos) {
 				push(data[x].detail.history[y], data[x].name);
 			}
 		}
 
 	}
-	while(!empty())
+	/*while(!empty())
+	{
+		pop();
+	}
+	*/
+	if(!empty())
 	{
 		pop();
 	}

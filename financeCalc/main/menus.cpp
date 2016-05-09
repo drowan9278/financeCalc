@@ -95,6 +95,7 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 			cout << "Please enter the value you want to search for" << endl;
 			cin >> searchWord;
 			search.findTerm(searchWord, data);
+			mainMenu(data);
 			break;
 		case 5:
 			backup.Backup(data);
