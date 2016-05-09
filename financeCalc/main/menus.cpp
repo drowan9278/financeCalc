@@ -116,7 +116,7 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 			cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View historical transactions\n3 - View account summary\n4 - Search for transactions\n5 - Backup & Restore Data\n6 - Save & Exit\n" << endl;
 			continue; //skips rest of loop and returns to beginning
 		}
-		//breaks out of loop once valid response recieved
+		break;//breaks out of loop once valid response recieved
 	}
 
 }
@@ -139,6 +139,7 @@ void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this
 			cin.clear();
 			string tmp;
 			getline(cin, tmp);
+			continue;
 		}
 		data[x].detail.balance += holder;
 		cout << "Please add a description for this entry: " << endl;
@@ -206,7 +207,6 @@ void menus::addAccount(vector<structure1::customer>& data1)
 				cin >> tempPIN;
 				for (int i = 0; i < data1.size(); i++)
 				{
-					cout << "size: " << data1.size() << data1[i].detail.pin << " - " << tempPIN << endl;
 					if (data1[i].detail.pin == tempPIN)
 					{
 						matchedPIN = true;
