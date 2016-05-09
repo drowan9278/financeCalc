@@ -68,8 +68,8 @@ void stack::pop()
 		top = ptr;
 	}
 }
-void stack::findTerm( string termSearch, vector<structure1::customer> &data)
-{
+void stack::findTerm( string termSearch, vector<structure1::customer> &data)// Here is the search function it searches through all all accounts and finds
+{                                                                           // all transactions that contains the string the user entered
 	for(int x = 0; x< data.size();x++)
 	{
 		for(int y = 0; y<data[x].detail.history.size();y++)
