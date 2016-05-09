@@ -154,13 +154,17 @@
     <ClInclude Include="stdafx.h">
       <DeploymentContent>true</DeploymentContent>
     </ClInclude>
-    <ClInclude Include="structure1.h" />
+    <ClInclude Include="structure1.h">
+      <DeploymentContent>true</DeploymentContent>
+    </ClInclude>
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dataManip.cpp" />
     <ClCompile Include="linkedList.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main.cpp">
+      <DeploymentContent>true</DeploymentContent>
+    </ClCompile>
     <ClCompile Include="menus.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="structure1.cpp" />

@@ -16,7 +16,7 @@ int main()
 	structure1 obj;
 	vector<structure1::customer> accounts =  vector<structure1::customer>();
 	menus accountMenus;
-	readBackup.BackupRead("Backup.dat",accounts);
+	readBackup.BackupRead(accounts);
 	//int x = accountMenus.addAccount(accounts);
 	accountMenus.mainMenu(accounts);
 	vector<structure1::customer>* accountPtr = &accounts;
