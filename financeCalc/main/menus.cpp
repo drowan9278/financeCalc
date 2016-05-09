@@ -34,7 +34,7 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 	*//**/
 	system("CLS");//windows only control, don't run on mac/unix
 	cout << flush << "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
-	cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View account summary\n3 - View historical transactions\n4 - Search for transactions\n5 - Save & Exit\n6 - Restore from Backup\n7 - Delete account\n8-Add a restore point" << endl;
+	cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View account summary\n3 - View historical transactions\n4 - Search for transactions\n5 - Save & Exit\n6 - Restore from Backup\n7 - Delete account\n8 - Add a restore point" << endl;
 	
 	while (true) //loop "infinitely" until break statement is reached
 	{
@@ -98,7 +98,6 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 			break;
 		case 5:
 			backup.Backup(data);
-			//will not hit this because backup has a call to mainMenu, it needs to be removed but i didnt want to remove anything in case david was working on it
 			exit(EXIT_SUCCESS);
 			break;
 		case 6:
@@ -118,7 +117,7 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 		default:
 			cout << "\n\tINVALID RESPONSE RECIEVED\n\n";
 			cout << "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
-			cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View historical transactions\n3 - View account summary\n4 - Search for transactions\n5 - Backup & Restore Data\n6 - Save & Exit\n" << endl;
+			cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View account summary\n3 - View historical transactions\n4 - Search for transactions\n5 - Save & Exit\n6 - Restore from Backup\n7 - Delete account\n8 - Add a restore point" << endl;
 			continue; //skips rest of loop and returns to beginning
 		}
 		break;//breaks out of loop once valid response recieved
