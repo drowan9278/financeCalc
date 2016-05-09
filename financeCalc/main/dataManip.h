@@ -11,6 +11,7 @@ public:
 	dataManip();
 	~dataManip();
 	void Backup(vector<structure1::customer>& data);
-	void BackupRead(vector<structure1::customer>& data);
+	void BackupRead(string fileName ,vector<structure1::customer>& data);
+	void Backup1(vector<structure1::customer>& data);
 };
 #endif

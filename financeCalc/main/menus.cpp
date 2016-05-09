@@ -4,7 +4,6 @@
 #include <ctime>
 #include "structure1.h"
 #include "dataManip.h"
-#include "linkedList.h"
 #include <stdlib.h>
 
 using namespace std;
@@ -17,6 +16,7 @@ menus::menus()
 
 menus::~menus()
 {
+	
 }
 
 void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access all other menus
@@ -29,11 +29,13 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 	4-search for transactions
 	5-save and exit
 	6-restore from backup
+	7- delete account
+	8- add a save point
 	*//**/
 	system("CLS");//windows only control, don't run on mac/unix
-	cout <<flush<< "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
-	cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View account summary\n3 - View historical transactions\n4 - Search for transactions\n5 - Save & Exit\n6 - Restore from Backup\n" << endl;
-	
+	cout << flush << "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
+	cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View account summary\n3 - View historical transactions\n4 - Search for transactions\n5 - Save & Exit\n6 - Restore from Backup\n7 - Delete account" << endl;
+
 	while (true) //loop "infinitely" until break statement is reached
 	{
 		int id = -1;
@@ -41,107 +43,102 @@ void menus::mainMenu(vector<structure1::customer>& data) //Main menu to access a
 		cin.exceptions(istream::failbit);
 		try {
 			cin >> answer;
-			}
-		catch(ios_base::failure &fail){
+		}
+		catch (ios_base::failure &fail) {
 			cout << "ERROR:Bad Value, numbers only, Enter a integer" << endl;
 			cin.clear();
 			string tmp;
 			getline(cin, tmp);
 		}
-		
+		string fileName;
 		switch (answer)
 		{
-			case 0:
-				addAccount(data);
-				break;
-			case 1:
-				 id=grabAccountId(data);
-				if(id==-1)
-				{
-					cout << "ERROR:Account Not Found" << endl;
-				}
-				else {
-					modifyExistData(id, data);
-				}
-				break;
-			case 2:
-				id = grabAccountId(data);
-				if (id == -1)
-				{
-					cout << "ERROR: Account Not Found" << endl;
-				}
-				else
-				{
-					getInfoAccount(id, data);
-				}
-				break;
-			case 3:
-				id = grabAccountId(data);
-				if(id==-1)
-				{
-					cout << "ERROR: Account Not Found" << endl;
-					continue;
-				}
-				else
-				{
-					getTransactions(id, data);
-				}
-				break;
-			case 4:
-				id = grabAccountId(data);
-				if (id == -1)
-				{
-					cout << "ERROR: Account Not Found" << endl;
-					continue;
-				}
-				else
-				{
-					searchTransactions(id, data);
-				}
-				break;
-			case 5:
-				backup.Backup(data);
-				break;
-			case 6:
-				break;
-			default:
-				cout << "\n\tINVALID RESPONSE RECIEVED\n\n";
-				cout << "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
-				cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View historical transactions\n3 - View account summary\n4 - Search for transactions\n5 - Backup & Restore Data\n6 - Save & Exit\n" << endl;
-				continue; //skips rest of loop and returns to beginning
+		case 0:
+			addAccount(data);
+			break;
+		case 1:
+			id = grabAccountId(data);
+			if (id == -1)
+			{
+				cout << "ERROR:Account Not Found" << endl;
+			}
+			else {
+				modifyExistData(id, data);
+			}
+			break;
+		case 2:
+			id = grabAccountId(data);
+			if (id == -1)
+			{
+				cout << "ERROR: Account Not Found" << endl;
+			}
+			else
+			{
+				getInfoAccount(id, data);
+			}
+			break;
+		case 3:
+			id = grabAccountId(data);
+			if (id == -1)
+			{
+				cout << "ERROR: Account Not Found" << endl;
+			}
+			else
+			{
+				getTransactions(id, data);
+			}
+			break;
+		case 4:
+			//search for account
+			break;
+		case 5:
+			backup.Backup(data);
+			//will not hit this because backup has a call to mainMenu, it needs to be removed but i didnt want to remove anything in case david was working on it
+			exit(EXIT_SUCCESS);
+			break;
+		case 6:
+			cout << "Please enter the file you would like back up from" << endl;
+			
+			cin >> fileName;
+			backup.BackupRead(fileName, data);
+			
+			//restore from backup
+			break;
+		case 7:
+			deleteAccount(data);
+			break;
+		case 8:
+			backup.Backup1(data); //Dont try this willynilly will create a spam of files
+			break;
+		default:
+			cout << "\n\tINVALID RESPONSE RECIEVED\n\n";
+			cout << "\t\t\tPERSONAL FINANCE CALCULATOR\n\n\t\t\t\tMAIN MENU\n\nPlease make a choice:\n" << endl;
+			cout << "0 - Add a new account\n1 - Modify an existing account\n2 - View historical transactions\n3 - View account summary\n4 - Search for transactions\n5 - Backup & Restore Data\n6 - Save & Exit\n" << endl;
+			continue; //skips rest of loop and returns to beginning
 		}
-		break;//breaks out of loop once valid response recieved
+		//breaks out of loop once valid response recieved
 	}
 
 }
 
 void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this to modify an existing account (just removed the type of account)*/
 {
-	system("CLS");//windows only control, don't run on mac/unix
+	system("CLS");//windows only control, don't run on mac/uniqwx
+	bool whilBrk = true;
 	string yn;
-	int count = 0;
-	while (true)
+	while (whilBrk)
 	{
 		cout << "\nPlease enter the credit or debit (positive or negative numbers only)\n that you will be adding to " << data[x].name << ":" << endl;
 		float holder;
-		while (true)
-		{
-			try {
-				cin >> holder;
-				break;
-			}
-			catch (ios_base::failure &fail) {
-				cout << "ERROR: Bad Value, numbers only, Enter a integer" << endl;
-				cin.clear();
-				string tmp;
-				getline(cin, tmp);
-			}
-			count++;
-			if (count == 3)
-			{
-				mainMenu(data);
-				break;
-			}
+		cin.exceptions(istream::failbit);
+		try {
+			cin >> holder;
+		}
+		catch (ios_base::failure &fail) {
+			cout << "ERROR:Bad Value, numbers only, Enter a integer" << endl;
+			cin.clear();
+			string tmp;
+			getline(cin, tmp);
 		}
 		data[x].detail.balance += holder;
 		cout << "Please add a description for this entry: " << endl;
@@ -153,7 +150,7 @@ void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this
 		int count = 0;
 		string newDesc = desc + " **Cr/Db = " + to_string(holder) + " ** Time of transaction: " + dt;
 		data[x].detail.history.push_back(newDesc);/*This will add the description the amount and time current time and then
-											  will be added to the history vector*/
+												  will be added to the history vector*/
 		while (true)
 		{
 			cout << "\nWould you like to add another entry?(Y or N) " << endl;
@@ -166,10 +163,8 @@ void menus::modifyExistData(int x, vector<structure1::customer>& data)/*Use this
 			{
 				cout << "Now exiting to Main Menu...\n" << endl;
 				mainMenu(data);
+				return;
 			}
-			else
-				continue;
-
 		}
 	}
 }
@@ -177,7 +172,7 @@ void menus::addAccount(vector<structure1::customer>& data1)
 {
 	system("CLS");//windows only control, don't run on mac/unix
 	structure1::customer data;
-	
+	int pwc = 0;
 	string tempPIN;
 	bool matchedPIN = false;
 	int x = sizeof(data);
@@ -192,7 +187,7 @@ void menus::addAccount(vector<structure1::customer>& data1)
 		{
 		case 'Y':
 		case 'y':
-			
+
 			x = sizeof(data);
 			cout << "Please enter the account name: " << endl;
 			cin.ignore(1000, '\n');
@@ -205,20 +200,32 @@ void menus::addAccount(vector<structure1::customer>& data1)
 			data.type = cs;
 			do
 			{
-				cout << "Please enter a unique password for this account: " << endl;
-				cin.ignore(1000, '\n');
-				getline(cin, tempPIN);
-				for (int i = 0; i < sizeof(data); i++)
+				matchedPIN = false;
+				pwc++;
+				cout << "Please enter a unique 8 digit password for this account: " << endl;
+				cin >> tempPIN;
+				for (int i = 0; i < data1.size(); i++)
 				{
-					if (data.detail.pin == tempPIN)
+					cout << "size: " << data1.size() << data1[i].detail.pin << " - " << tempPIN << endl;
+					if (data1[i].detail.pin == tempPIN)
+					{
 						matchedPIN = true;
+						cout << "MATCHED" << endl;
+					}
 				}
+				if (tempPIN.length() != 8)
+					matchedPIN = true;
 				if (!matchedPIN)
 					data.detail.pin = tempPIN;
+				if (pwc == 3)
+				{
+					cout << "Now exiting to Main Menu...\n" << endl;
+					mainMenu(data1);
+				}
 			} while (matchedPIN);
 			cout << "\nYour password is : " << data.detail.pin << "\n\tDO NOT FORGET YOUR PASSWORD!\n\t\tIT IS THE ONLY WAY TO ACCESS YOUR ACCOUNT!\n" << endl;
-			
-			data.vectorID=size(data1);
+
+			data.vectorID = size(data1);
 			data1.push_back(data);
 			while (true)
 			{
@@ -238,19 +245,19 @@ void menus::addAccount(vector<structure1::customer>& data1)
 		case 'n':
 			cout << "Now exiting to Main Menu...\n" << endl;
 			mainMenu(data1);
-			
+
 			break;
 
 		default:
 			cout << "\nYou have entered an invalid response!" << endl;;
-			cout << "\nWould you like to add an account? (Y or N)" <<endl;
+			cout << "\nWould you like to add an account? (Y or N)" << endl;
 			continue; //jumps to top of loop
 		}
 		break; //breaks out of loop only when valid response is recieved
 	}
 
 
-	
+
 }
 void menus::getInfoAccount(int x, vector<structure1::customer>& data)
 {
@@ -288,44 +295,69 @@ void menus::getTransactions(int x, vector<structure1::customer>& data)
 	//better way to do this than making a system call
 	mainMenu(data);
 }
-
-void menus::searchTransactions(int x, vector<structure1::customer>& data)
+void menus::deleteAccount(vector<structure1::customer>& data)
 {
+	string yn;
 	system("CLS");//windows only control, don't run on mac/unix
-	cout << "Here is all search transcations details..... " << data[x].name << endl;
-	cout << "***************************************" << endl;
-	for (int index = 0; index<data[x].detail.history.size(); index++)
+	while (true)
 	{
-		cout << data[x].detail.history[index] << endl;
+		cout << "Would you like to delete an account? (Y or N)" << endl;
+
+		cin >> yn;
+		if (yn == "Y" || yn == "y")
+			break;
+		else if (yn == "N" || yn == "n")
+		{
+			mainMenu(data);
+			break;
+		}
 	}
-	cout << "*****************************************" << endl;
-	cout << "END OF TRANSACTIONS" << endl;
-	//system("pause");
-	cout << "Press ENTER to continue...";
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	cin.get();
-	//better way to do this than making a system call
+	int id = grabAccountId(data);
+	if (id == -1)
+	{
+		cout << "ERROR:Account Not Found" << endl;
+		mainMenu(data);
+	}
+	while (true)
+	{
+		cout << "ARE YOU SURE YOU WISH TO DELETE THE ACCOUNT " << data[id].name << "? (Y or N)" << endl;
+
+		cin >> yn;
+		if (yn == "Y" || yn == "y")
+			break;
+		else if (yn == "N" || yn == "n")
+		{
+			mainMenu(data);
+			break;
+		}
+	}
+	//delete account
+	for (int x = 0; x<data.size(); x++)
+	{
+		if (id == data[x].vectorID)
+		{
+			data.erase(data.begin() + id);
+		}
+	}
+
+	cout << "Account deleted." << endl;
 	mainMenu(data);
 }
-
-
-
 int menus::grabAccountId(vector<structure1::customer>& data)
 {
 	system("CLS");//windows only control, don't run on mac/unix
 	cout << "Please enter your password to access your account" << endl;
 	string pin;
-	cin.ignore(1000, '\n');
-	getline(cin, pin);
-	int vectId=-1;//This makes it so if wrong pin is entered it loops to back menu
-	for(int x = 0;x<data.size();x++)
+	cin >> pin;
+	int vectId = -1;//This makes it so if wrong pin is entered it loops to back menu
+	for (int x = 0;x<data.size();x++)
 	{
-		if(pin==data[x].detail.pin)
+		if (pin == data[x].detail.pin)
 		{
 			vectId = data[x].vectorID;//This allow to grab the user vector id
 		}
 	}
-	
+
 	return vectId;
 }
 
