@@ -9,7 +9,7 @@ class linkedList
 public:
 	linkedList();
 	~linkedList();
-
+	void insert(int x, vector<structure1::customer>& data);
 	void searchTransactions(int x, vector<structure1::customer>& data);
 
 

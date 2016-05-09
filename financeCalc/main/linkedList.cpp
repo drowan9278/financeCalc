@@ -13,8 +13,13 @@
 
 
 using namespace std;
-
-int main()
+struct node
+{
+	string term;
+	string vectid;
+	node* next;
+};
+int main1()//Cannot use main!!
 {
 
 	linkedList menu;
@@ -27,17 +32,17 @@ int main()
 	cout << "Current balance: " << data[x].detail.balance << endl;
 	cout << "Would you like to view transaction history? (Y or N)" << endl;
 	string yn;
-	menu.search(2);//static search
+	//menu.search(2);//static search **unsure of what this is going to do
 	system("pause");
 };
 
 
-linkedList::linkedList()
-{
-	head = NULL;
-	current = NULL;
-	temp = NULL;
-};
+//linkedList::linkedList()
+//{
+//	head = NULL;
+//	current = NULL;
+//	temp = NULL;
+//}; not sure about this either
 
 
 linkedList::~linkedList()
@@ -48,7 +53,7 @@ linkedList::~linkedList()
 
 void linkedList::insert(int x, vector<structure1::customer>& data)                                    //insert function, data is stored in add from f
 {
-	Node* newnode = new Node;                                       //definition of add node, make new node and make node* point to it
+	node* newnode = new Node;                                       //definition of add node, make new node and make node* point to it
 	newnode->next = NULL;                                           //point and set up to last node in the list (nothing)
 	newnode->number = x;                                          //adds data to list
 

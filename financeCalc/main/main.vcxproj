@@ -151,6 +151,7 @@
     <ClInclude Include="menus.h">
       <DeploymentContent>true</DeploymentContent>
     </ClInclude>
+    <ClInclude Include="stack.h" />
     <ClInclude Include="stdafx.h">
       <DeploymentContent>true</DeploymentContent>
     </ClInclude>
@@ -166,6 +167,7 @@
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
     <ClCompile Include="menus.cpp" />
+    <ClCompile Include="stack.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="structure1.cpp" />
   </ItemGroup>
